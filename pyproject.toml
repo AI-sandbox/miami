@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "miami-imputer"
+version = "1.2.0"
+description = "Miami: iterative correction of missing-data imputations"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "MIAMI authors" }]
+keywords = ["imputation", "missing-data", "scikit-learn", "xgboost", "tabular"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "numpy>=1.24",
+  "pandas>=2",
+  "scipy>=1.10",
+  "scikit-learn>=1.6,<2",
+  "xgboost>=3.0,<4",
+  "kneed>=0.8.5,<0.9",
+]
+
+[project.urls]
+Homepage = "https://github.com/AI-sandbox/miami"
+Repository = "https://github.com/AI-sandbox/miami"
+Issues = "https://github.com/AI-sandbox/miami/issues"
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "build>=1", "ruff>=0.9"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["gpu: requires a working CUDA-enabled XGBoost installation and NVIDIA GPU"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP"]
